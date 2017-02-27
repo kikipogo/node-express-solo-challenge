@@ -1,10 +1,12 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var path = require('path');
 var port = 3000;
 
 
 // initial jokes provided by the client
+//package as object
 var jokes = [
   {
     whoseJoke: "Luke",
@@ -23,14 +25,29 @@ var jokes = [
   }
 ];
 
+
 // static file requests
 app.use(express.static('server/public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // routes
+app.get('/jokes', function(req, res){
+  res.send(jokes);
+});
+//Set up server side routes to handle requests
+app.post('/jokes/new', function(req, res){
+  console.log('in jokes post:', jokes);
+res.send(jokes);
+
+
+}); //end /jokes post
+
+
 
 
 // Send index.html file
 app.get('/', function(req, res) {
+  console.log('home base url hit');
   res.sendFile(path.resolve('server/public/views/index.html'));
 });
 
