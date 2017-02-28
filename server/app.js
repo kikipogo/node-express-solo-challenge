@@ -39,9 +39,27 @@ app.post('/jokes/new', function(req, res){
   console.log('in jokes post:', jokes);
 res.send(jokes);
 
+//Set up server side routes to handle requests
+app.post('/jokes/new', function(req, res){
+  console.log('in jokes post:', jokes);
+  jokes.push(req.body);
+res.send(jokes);
+
+<<<<<<< Updated upstream
+}); //end /jokes post
+=======
+>>>>>>> Stashed changes
 
 }); //end /jokes post
 
+
+
+
+// Send index.html file
+app.get('/', function(req, res) {
+  console.log('home base url hit');
+  res.sendFile(path.resolve('server/public/views/index.html'));
+});
 
 
 
